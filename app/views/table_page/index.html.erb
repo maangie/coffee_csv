@@ -1,8 +1,22 @@
-<% @numbers.each do |n| %>
-  <%= simple_form_for n do |f| %>
-    <%= f.input :col1 %>
-    <%= f.input :col2 %>
-    <%= f.input :col3 %>
-    <%= f.input :col4 %>
+<div class="container-fluid">
+  <% @numbers.each_with_index do |n, i| %>
+    <div class="row" id="<%= "row#{i + 1}" %>">
+      <%= simple_form_for n do |f| %>
+        <div class="col-md-1"><%= f.input :col1 %></div>
+        <div class="col-md-1"><%= f.input :col2 %></div>
+        <div class="col-md-1"><%= f.input :col3 %></div>
+        <div class="col-md-1"><%= f.input :col4 %></div>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+
+  <%= button_tag 'Export as CSV', class: 'btn btn-default' %>
+
+  <pre id="result">
+  </pre>
+
+  <div hidden id="export_area">
+    <%= link_to('ファイルに保存', '#',
+                class: 'btn btn-default', download: "#{Date.today.to_s}.csv") %>
+  </div>
+</div>
