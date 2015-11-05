@@ -38,6 +38,7 @@ gem 'twitter-bootstrap-rails'
 gem 'rails-i18n'
 gem 'simple_form'
 gem 'dotenv-rails'
+gem 'active_attr'
 
 group :development, :test do
   gem 'annotate'
