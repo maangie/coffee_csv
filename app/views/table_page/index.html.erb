@@ -1,4 +1,11 @@
 <div class="container-fluid">
+  <p>
+    <%= simple_form_for @number_of_rows do |f| %>
+      <%= f.input :rows %>
+      <%= f.button :submit, '行数指定' %>
+    <% end %>
+  </p>
+
   <% @numbers.each_with_index do |n, i| %>
     <div class="row" id="<%= "row#{i + 1}" %>">
       <%= simple_form_for n do |f| %>

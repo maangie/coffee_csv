@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'table_page#index'
   get 'table_page/index'
   get 'number_tables/index', as: 'number_tables'
+  get 'number_of_rows/index', as: 'number_of_rows_index'
 
   # The priority is based upon order of creation: first created ->
   # highest priority.
