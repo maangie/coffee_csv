@@ -1,10 +1,18 @@
 class TablePageController < ApplicationController
   def index
-    @number_of_rows = NumberOfRows.new(rows: 2)
+    rows = params[:number_of_rows] ? params[:number_of_rows][:rows].to_i : 2
+    @number_of_rows = NumberOfRows.new(rows: rows)
 
-    @numbers = [
-      NumberTable.new(col1: 2, col2: 1, col3: 4, col4: 3),
-      NumberTable.new(col1: 1, col2: 2, col3: 3, col4: 4)
-    ]
+    # @numbers = []
+    # rows.times do
+    #   @numbers.push NumberTable.new(col1: rand100, col2: rand100,
+    #                                 col3: rand100, col4: rand100)
+    # end
+  end
+
+  private
+
+  def rand100
+    rand(100)
   end
 end
