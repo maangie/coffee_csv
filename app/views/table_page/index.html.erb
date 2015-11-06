@@ -1,22 +1,47 @@
 <div class="container-fluid">
-  <% @numbers.each_with_index do |n, i| %>
-    <div class="row" id="<%= "row#{i + 1}" %>">
-      <%= simple_form_for n do |f| %>
-        <div class="col-md-1"><%= f.input :col1 %></div>
-        <div class="col-md-1"><%= f.input :col2 %></div>
-        <div class="col-md-1"><%= f.input :col3 %></div>
-        <div class="col-md-1"><%= f.input :col4 %></div>
-      <% end %>
-    </div>
-  <% end %>
+  <p>
+    <% params = { url: table_page_index_path, method: :get } %>
+    <%= simple_form_for @number_of_rows, params do |f| %>
+      <%= f.input :rows %>
+      <%= f.button :submit, '行数指定' %>
+    <% end %>
+  </p>
+
+  <hr />
 
   <%= button_tag 'Export as CSV', class: 'btn btn-default' %>
-
-  <pre id="result">
-  </pre>
 
   <div hidden id="export_area">
     <%= link_to('ファイルに保存', '#',
                 class: 'btn btn-default', download: "#{Date.today.to_s}.csv") %>
   </div>
+
+  <pre id="result">
+  </pre>
+
+  <% @number_of_rows.rows.times do |i| %>
+    <div class="row number_row" id="<%= "row#{i + 1}" %>">
+      <%= simple_form_for :numbers do |f| %>
+        <div class="col-md-1 text-right">
+          <%= f.label (i + 1).to_s %>
+        </div>
+
+        <div class="col-md-1">
+          <%= f.input :col1, input_html: { value: rand(100) } %>
+        </div>
+
+        <div class="col-md-1">
+          <%= f.input :col2, input_html: { value: rand(100) } %>
+        </div>
+
+        <div class="col-md-1">
+          <%= f.input :col3, input_html: { value: rand(100) } %>
+        </div>
+
+        <div class="col-md-1">
+          <%= f.input :col4, input_html: { value: rand(100) } %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

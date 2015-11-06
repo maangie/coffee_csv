@@ -4,13 +4,12 @@
 
 $(document).on 'click', 'button', ->
   data = ''
-  for row in [1..2]
+  for row in [1..$('.number_row').length]
     row_data = []
     for col in [1..4]
-      row_data.push($("#row#{row} #number_table_col#{col}").val())
+      row_data.push($("#row#{row} #numbers_col#{col}").val())
 
     data += row_data.join(',') + '\n'
-    console.log data
 
   $('#result').text(data)
 
