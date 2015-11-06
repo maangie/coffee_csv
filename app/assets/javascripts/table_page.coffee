@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'click', 'button', ->
+  $('#result').text('生成中……')
+
   data = ''
   for row in [1..$('.number_row').length]
     row_data = []
